@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Enam Concours - CM</title>
+        <style>
+            body {
+                background-color: #1a1a2e;
+                padding: 50px;
+                color:white;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+            h1 {
+                color:#f5a623;
+                font-size: 36px;
+            }
+            h2 {
+                color: rgb(247, 68, 68);
+            }
+            p {
+                color: #cccccc;  
+            }
+            nav {
+                margin-top: 20px;
+            }
+            nav a {
+                padding: 10px 20px;
+                background-color: #f5a623;
+                color: white;
+                border-radius: 5px;
+                margin: 5px;
+                text-decoration: none;
+            }
+            nav a:hover {
+                background-color: #a97103;
+            }
+        .card {
+            background-color: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 35%;
+            margin: 20px auto;
+
+        }
+        .subject-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0px 0;
+        }
+        .download-btn {
+            padding: 5px 15px;
+            color: white;
+            background-color: #f5a623;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+
+        }
+        .download-btn:hover {
+            background-color: #a97103;
+        }
+        #lang-switcher
+            { position:fixed ;
+            top: 15px;
+             right:15px ;}
+             .lang-btn {
+                background-color: white;
+                color: black;
+                border:none;
+                padding: 8px 15px;
+                margin: 2px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+             }
+             .lang-btn:hover {
+                background-color: grey;
+             }
+         @media (max-width: 1024px){
+            .card {
+                width: 75%;
+            }
+        }
+        @media (max-width: 768px){
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 14px;
+            }
+            nav a {
+                display: block;
+                margin:8px auto;
+                width: 80%;
+            }
+            .card {
+                width: 90%;
+            }
+            .subject-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap:8px;
+            }
+        }
+        @media (max-width:480px){
+            h1 {
+                font-size: 20px;
+            }
+            nav a {
+                width: 90px;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">Concours de L'enam</h1>
+        <p id="subtitle">Annales et resources pour le concours de L'enam</p>
+         <div id="lang-switcher">
+            <button onclick="setlang('fr')" class="lang-btn">FR</button>
+            <button onclick="setlang('en')" class="lang-btn">EN</button>
+      </div>
+        <nav>
+        <a href="index.html" id="nav_home">Accueil</a>
+        <a href="douanes.html" id="nav_douanes">Douanes</a>
+        <a href="enam.html" id="nav_enam">Enam</a>
+        <a href="hospitalier.html" id="nav_hospitalier">Hospitalier</a>
+        <a href="contact.html" id="nav_contact">Contact</a>
+        </nav>
+        <div class="card">
+            <h2 id="papers">Annales disponible</h2>
+            <div class="subject-row">
+            <p id="sub1">sujet 2023 - Culture generale</p>
+            <a href="#" class="download-btn" id="dl1">Telecharger</a></div>
+            <div class="subject-row">
+            <p id="sub2">sujet 2022 - Economie</p>
+            <a href="#" class="download-btn" id="dl2">Telecharger</a></div>
+            <div class="subject-row">
+            <p id="sub3">sujet 2021 - Mathematiques</p>
+            <a href="#" class="download-btn" id="dl3">Telecharger</a></div>
+            <div class="subject-row">
+            <p id="sub4">sujet 2020 - Francais</p>
+            <a href="#" class="download-btn" id="dl4">Telecharger</a></div>
+            <div class="subject-row">
+            <p id="sub5">sujet 2019 - Droit</p>
+            <a href="#" class="download-btn" id="dl5">Telecharger</a>
+        </div>
+    </body>
+</html>
+<script>
+      let   translations = {
+       fr: {
+        title: "Concours de l'enam",
+        subtitle: "Annales et resources pour l'enam",
+        papers:"Annales disponoble",
+        nav_home: "Accueil",
+        nav_douanes: "Douanes",
+        nav_enam:"Enam",
+        nav_hospitalier:"Hospitalier",
+        nav_contact:"Contact", 
+        sub1:"sujet 2023 - Culture general",
+        dl1:"Telecharger",
+        sub2:"sujet 2022 - Mathematiques",
+        dl2:"Telecharger",
+        sub3:"sujet 2021 - Economie",
+        dl3:"Telecharger",
+        sub4:"sujet 2020 - Francais",
+        dl4:"Telecharger",
+        sub5:"sujet 2019 - Droit",
+        dl5:"Telecharger",
+    },
+        
+        en: {
+        title:"Enam examination",
+        subtitle:"past papers and resources for Enam",
+        papers:"Available papers",
+        nav_home:"Home",
+        nav_douanes:"Customs",
+        nav_enam:"Enam",
+        nav_hospitalier:"Hospital",
+        nav_contact:"Contact",
+        sub1:"2023 subject - General knwoledge",
+        dl1:"Download",
+        sub2:"2022 subject - Mathematics",
+        dl2:"Download",
+        sub3:"2021 subject - Economie",
+        dl3:"Download",
+        sub4:"2020 subject - French",
+        dl4:"Download",
+        sub5:"2019 subject - Right",
+        dl5:"Download",
+        },
+    };
+        function setlang(lang) {
+        document.getElementById('title').textContent= translations[lang].title;
+        document.getElementById('subtitle').textContent= translations[lang].subtitle;
+        document.getElementById('nav_home').textContent= translations[lang].nav_home;
+        document.getElementById('nav_douanes').textContent=translations[lang].nav_douanes;
+        document.getElementById('nav_enam').textContent=translations[lang].nav_enam;
+        document.getElementById('nav_hospitalier').textContent=translations[lang].nav_hospitalier;
+        document.getElementById('nav_contact').textContent=translations[lang].nav_contact;
+        document.getElementById('papers').textContent=translations[lang].papers;
+        document.getElementById('sub1').textContent=translations[lang].sub1;
+        document.getElementById('dl1').textContent=translations[lang].dl1;
+        document.getElementById('sub2').textContent=translations[lang].sub2;
+        document.getElementById('dl2').textContent=translations[lang].dl2;
+        document.getElementById('sub3').textContent=translations[lang].sub3;
+        document.getElementById('dl3').textContent=translations[lang].dl3;
+        document.getElementById('sub4').textContent=translations[lang].sub4;
+        document.getElementById('dl4').textContent=translations[lang].dl4;
+        document.getElementById('sub5').textContent=translations[lang].sub5;
+        document.getElementById('dl5').textContent=translations[lang].dl5; 
+    }
+    </script>
+    

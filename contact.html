@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>contact-concours CM</title>
+        <style>
+            body {
+                background-color: #1a1a2e;
+                color: white;
+                font-family: arial,sans-serif;
+                padding: 50px;
+                text-align: center;
+            }
+            h1 {
+                color: #f5a623;
+                font-size: 36px;
+            }
+            p {
+                color: #cccccc;
+            }
+            nav {margin-top: 20px;}
+            nav a {
+                background-color: #f5a623;
+                color: white;
+                 border-radius: 5px;
+                padding:10px 20px;
+                text-decoration:none;
+                margin: 5px;
+            }
+            nav a:hover {
+                background-color:  #a97103;
+            }
+            .card-form {
+                background-color: #16213e;
+                border-radius: 10px;
+                padding: 30px;
+                margin:30px auto;
+                width: 60%;
+            }
+            .textarea{
+                height:120px;
+            }
+            input, textarea {
+                width: 90%;
+                padding: 12px;
+                margin:10px 0;
+                border-radius: 8px;
+                border: none;
+                background-color: #1a1a2e;
+                color:white;
+                font-size: 14px;
+            }
+            .submit-btn {
+                color: white;
+                background-color: rgb(7, 165, 7);
+                padding: 12px 40px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 10px;
+                border: none;
+                border-radius: 8px;
+            }
+            .submit-btn:hover {
+                background-color:green;
+            }
+            #lang-switcher
+            { position:fixed ;
+            top: 15px;
+             right:15px ;}
+             .lang-btn {
+                background-color: white;
+                color: black;
+                border:none;
+                padding: 8px 15px;
+                margin: 2px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+             }
+             .lang-btn:hover {
+                background-color: grey;
+             }
+            @media (max-width: 768px){
+                .card-form {width:90%;}
+                h1 {
+                    font-size: 24px;
+                }
+                nav a {
+                    display: block;
+                    margin: 8px auto;
+                    width: 80px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title">Contacter-nous</h1>
+        <p id="subtitle">Une question ?  Ecrivez-nous.</p>
+         <div id="lang-switcher">
+            <button onclick="setlang('fr')" class="lang-btn">FR</button>
+            <button onclick="setlang('en')" class="lang-btn">EN</button>
+      </div>
+        <nav>
+            <a href="index.html" id="nav_home">Accueil</a>
+            <a href="douanes.html" id="nav_douanes">Douanes</a>
+            <a href="enam.html" id="nav_enam">Enam</a>
+            <a href="hospitalier.html" id="nav_hospitalier">Hospitalier</a>
+            <a href="contact.html" id="nav_contact">Contact</a>
+        </nav>
+        <div class="card-form">
+            <h2 id="papers"> Envoyer un message</h2>
+            <input type="text" id="ph_name" placeholder="Votre nom ">
+            <input type="email" id="ph_email" placeholder="Votre email">
+            <input type="text" id="ph_subject" placeholder="Sujet">
+            <textarea  id="ph_message" placeholder="Votre message..."></textarea>
+            <button class="submit-btn" id="dl1" onclick="sendMessage()" >Envoyer</button>
+        </div>
+        <script>
+          function sendMessage() {
+            let name = document.getElementById('ph_name').value;
+            let email = document.getElementById('ph_email').value; 
+            let message = document.getElementById('ph_message').value; 
+            if (name ==='' || email ==='' || message ==='' ){
+                alert('Veillez remplir tous les champs!');
+             } else {
+                    alert('Message envoye ! Merci ' + name );
+                }
+            }
+            
+            
+            
+      let   translations = {
+       fr: {
+        title: "Contacter-nous",
+        subtitle: "Une question ?  Ecrivez nous. ",
+        papers:"Envoyer un message",
+        nav_home: "Accueil",
+        nav_douanes: "Douanes",
+        nav_enam:"Enam",
+        nav_hospitalier:"Hospitalier",
+        nav_contact:"Contact", 
+        ph_name:"Votre nom",
+        ph_email:"email",
+        ph_subject:"sujet",
+        ph_message:"Votre message...",
+        dl1:"Envoyer",
+    },
+        
+        en: {
+        title:"Contact-us",
+        subtitle:"A question ?  write to us. ",
+        papers:"Send a message",
+        nav_home:"Home",
+        nav_douanes:"Customs",
+        nav_enam:"Enam",
+        nav_hospitalier:"Hospital",
+        nav_contact:"Contact",
+        ph_name:"Your name",
+        ph_email:"Your email",
+        ph_subject:"Subject",
+        ph_message:"Your message",
+        dl1:"Send",
+        },
+    };
+        function setlang(lang) {
+        document.getElementById('title').textContent= translations[lang].title;
+        document.getElementById('subtitle').textContent= translations[lang].subtitle;
+        document.getElementById('nav_home').textContent= translations[lang].nav_home;
+        document.getElementById('nav_douanes').textContent=translations[lang].nav_douanes;
+        document.getElementById('nav_enam').textContent=translations[lang].nav_enam;
+        document.getElementById('nav_hospitalier').textContent=translations[lang].nav_hospitalier;
+        document.getElementById('nav_contact').textContent=translations[lang].nav_contact;
+        document.getElementById('papers').textContent=translations[lang].papers;
+        document.getElementById('ph_name').placeholder=translations[lang].ph_name;
+        document.getElementById('ph_email').placeholder=translations[lang].ph_email;
+        document.getElementById('ph_subject').placeholder=translations[lang].ph_subject;
+        document.getElementById('ph_message').placeholder=translations[lang].ph_message;
+        document.getElementById('dl1').textContent=translations[lang].dl1;
+        }
+    </script>
