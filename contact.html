@@ -4,7 +4,7 @@
         <title>contact-concours CM</title>
         <style>
             body {
-                background-color: #1a1a2e;
+                background-color: rgb(3,122,122);
                 color: white;
                 font-family: arial,sans-serif;
                 padding: 50px;
@@ -19,18 +19,24 @@
             }
             nav {margin-top: 20px;}
             nav a {
-                background-color: #f5a623;
+                background: transparent;
                 color: white;
-                 border-radius: 5px;
-                padding:10px 20px;
+                 border-radius: 30px;
+                padding:12px 25px;
                 text-decoration:none;
                 margin: 5px;
+                font-weight: bold;
+                font-size: 15px;
+                border: 2px solid #f5a623;
+                transition: all 0.3s ease;
+
             }
             nav a:hover {
-                background-color:  #a97103;
+                background-color:  #f5a623;
+                color: white;
             }
             .card-form {
-                background-color: #16213e;
+                background-color: rgb(93,153,153);
                 border-radius: 10px;
                 padding: 30px;
                 margin:30px auto;
@@ -45,8 +51,8 @@
                 margin:10px 0;
                 border-radius: 8px;
                 border: none;
-                background-color: #1a1a2e;
-                color:white;
+                background-color: white;
+                color:rgb(5, 5, 5);
                 font-size: 14px;
             }
             .submit-btn {
@@ -82,12 +88,19 @@
             @media (max-width: 768px){
                 .card-form {width:90%;}
                 h1 {
-                    font-size: 24px;
+                    font-size: 26px;
+                }
+                p {
+                    font-size: 16px;
                 }
                 nav a {
                     display: block;
-                    margin: 8px auto;
+                    margin: 5px auto;
                     width: 80px;
+                    padding: 12px 20px;
+                    font-size: 15px;
+
+
                 }
             }
         </style>

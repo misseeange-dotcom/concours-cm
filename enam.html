@@ -4,7 +4,7 @@
         <title>Enam Concours - CM</title>
         <style>
             body {
-                background-color: #1a1a2e;
+                background-color: rgb(3,122,122);
                 padding: 50px;
                 color:white;
                 text-align: center;
@@ -15,7 +15,7 @@
                 font-size: 36px;
             }
             h2 {
-                color: rgb(247, 68, 68);
+                color: white;
             }
             p {
                 color: #cccccc;  
@@ -24,18 +24,22 @@
                 margin-top: 20px;
             }
             nav a {
-                padding: 10px 20px;
-                background-color: #f5a623;
+                padding: 12px 25px;
+                background: transparent;
                 color: white;
-                border-radius: 5px;
+                border-radius: 30px;
                 margin: 5px;
                 text-decoration: none;
+                transition: all 0.3s ease;
+                border: 2px solid #f5a623;
+                font-weight: bold;
             }
             nav a:hover {
-                background-color: #a97103;
+                background-color: #f5a623;
+
             }
         .card {
-            background-color: #16213e;
+            background-color: rgb(93,153,153);
             padding: 20px;
             border-radius: 10px;
             width: 35%;
@@ -49,16 +53,19 @@
             margin: 0px 0;
         }
         .download-btn {
-            padding: 5px 15px;
+            padding: 8px 20px;
             color: white;
-            background-color: #f5a623;
-            border-radius: 5px;
+            background: transparent;
+            border-radius: 20px;
             text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
             font-size: 14px;
+            border: 2px solid #f5a623;
 
         }
         .download-btn:hover {
-            background-color: #a97103;
+            background-color: #f5a623;
         }
         #lang-switcher
             { position:fixed ;
@@ -84,15 +91,26 @@
         }
         @media (max-width: 768px){
             h1 {
-                font-size: 24px;
+                font-size: 26px;
+                
+            }
+            h2 {
+                font-size: 20px;
             }
             p {
-                font-size: 14px;
+                font-size: 16px;
             }
             nav a {
                 display: block;
                 margin:8px auto;
                 width: 80%;
+                padding: 12px 20px;
+                font-size: 15px;
+                margin: 5px auto;
+            }
+            .download-btn {
+                padding: 10px 20px;
+                font-size: 15px;
             }
             .card {
                 width: 90%;

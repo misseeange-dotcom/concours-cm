@@ -4,7 +4,7 @@
         <title>Douanes-concours CM</title>
     <style>
         body {
-            background-color: #1a1a2e;
+            background-color: rgb(3,122,122);
             font-family:Arial, sans-serif ;
             padding: 50px;
             color:white;
@@ -15,7 +15,7 @@
             font-size: 36px;
         }
         h2 {
-            color: rgb(247,68,68);
+            color: white;
         }
         p {
             color:#cccccc;
@@ -25,18 +25,21 @@
         }
         nav a {
             color: white;
-            background-color: #f5a623;
-            padding: 10px 20px;
+            background: transparent;
+            padding: 12px 25px;
             text-decoration: none;
             margin: 5px;
-            border-radius: 5px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 2px solid #f5a623;
+            transition: all 0.3s ease ;
         }
         nav a:hover {
-            background-color: #a97103;
+            background-color: #f5a623;
         }
         
         .card{
-            background-color: #16213e;
+            background-color: rgb(93, 153, 153);
             padding: 20px;
             margin: 20px auto;
             width: 40%;
@@ -49,17 +52,19 @@
             margin: 0px 0px;
         }
         .download-btn {
-            background-color:#f5a623 ;
+            background:transparent ;
             color: white;
             padding: 5px 15px;
-            border-radius: 5px;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid #f5a623;
             min-width: 90px;
             text-align: center;
+            transition: all 0.3s ease;
         }
         .download-btn:hover {
-            background-color:#a97103;
+            background-color:#f5a623;
         }
          #lang-switcher
             { position:fixed ;
@@ -88,13 +93,23 @@
             h1 {
                 font-size: 24px;
             }
+            h2 {
+                font-size: 20px;
+            }
             p {
                 font-size: 14px;
             }
             nav a {
                 display: block;
-                margin:8px auto;
+                margin:5px auto;
                 width: 80%;
+                padding: 12px 20px;
+                font-size: 15px;
+
+            }
+            .download-btn {
+                padding: 10px 20px ;
+                font-size: 15px;
             }
             .card {
                 width: 90%;

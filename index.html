@@ -4,7 +4,7 @@
         <title> Concours CM</title>
         <style>
             body {
-                background-color: #1a1a2e;
+                background-color: rgb(3, 122, 122);
                 color:white;
                 font-family: Arial, sans-serif;
                 text-align: center;
@@ -17,18 +17,23 @@
                 color: #cccccc;
             }
             nav a:hover {
-                background-color: #a97103;
+                background-color: #f5a623;
+                color: white;
             }
             nav {
                 margin-top: 30px;
             }
             nav a {
                 color: white;
-                background-color: #f5a623;
-                padding: 5px 10px;
-                border-radius: 5px;
+                background: transparent;
+                padding: 12px 25px;
+                border-radius: 30px;
                 margin: 5px;
                 text-decoration: none;
+                font-weight: bold;
+                font-size: 15px;
+                transition: all 0.3s ease;
+                border: 2px solid #f5a623;
             }
             #lang-switcher
             { position:fixed ;
@@ -47,6 +52,68 @@
              .lang-btn:hover {
                 background-color: grey;
              }
+             .dropdown {
+                position: relative;
+                display: inline-block;
+             }
+             .dropdown-btn {
+                background: transparent;
+                color: #f5a623;
+                padding: 12px 25px;
+                border-radius: 30px;
+                font-weight: bold;
+                font-size: 15px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+             }
+              .dropdown-btn:hover {
+                background: #f5a523;
+                color: white;
+              }
+              .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 110%;
+                left: 0;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+                min-width: 160px;
+                z-index: 100;
+                overflow: hidden;
+              }
+              .dropdown-menu.open {
+                display: block;
+                animation: slideDown 0.3s ease;
+              }
+              @keyframes slidedown {
+                from {
+                    opacity: 0;
+                    tramsform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+              } 
+              .dropdown-menu a {
+                display: block;
+                padding: 12px 20px;
+                color: #1a1a2e;
+                text-decoration: none;
+                border-bottom: 1px solid #f0f0f0;
+                transition: all 0.3s ease;
+                border-radius: 0;
+                border:none;
+                width: 100%;
+                text-align: left;
+              }
+              .dropdown-menu a:hover {
+                background: #f5a623;
+                color: white;
+                padding-left: 30px; 
+              }
 
             @media (max-width: 768px){
                 h1 {
@@ -85,6 +152,7 @@
         </style>
     </head>
     <body>
+        
         <h1 id="title">Bienvenue sur Concours CM</h1>
         <p id="subtitle">la plateform des annales de concours au cameroun.</p>
         <div id="lang-switcher">
@@ -92,12 +160,20 @@
             <button onclick="setlang('en')" class="lang-btn">EN</button>
         </div><nav>
             <a href="index.html" id="nav_home">Accueil</a>
-            <a href="douanes.html" id="nav_douanes">Douanes</a>
+            <div class="dropdown">
+                <button class="dropdown-btn" id="dl1" onclick="toggleDropdown()">
+                    Concours &#9660;
+                </button>
+                <div class="dropdown-menu" id="dropdownMenu">
+            <a href="douanes.html " id="nav_douanes" >Douanes</a>
             <a href="enam.html" id="nav_enam">Enam</a>
-            <a href="hospitalier.html" id="nav_hospitalier">Hospitalier</a>
+            <a href="hospitalier.html" id="nav_hospitalier" >Hospitalier</a>
+        </div>
+    </div>
             <a href="contact.html" id="nav_contact">Contact</a>
             
         </nav>
+        
     </body>
     <script>
       let   translations = {
@@ -108,7 +184,9 @@
         nav_douanes: "Douanes",
         nav_enam:"Enam",
         nav_hospitalier:"Hospitalier",
-        nav_contact:"Contact"},
+        nav_contact:"Contact",
+        dl1:"Concours"
+    },
         en: {
         title:"welcome to Concours CM",
         subtitle:"the exam papers plateform",
@@ -117,6 +195,7 @@
         nav_enam:"Enam",
         nav_hospitalier:"Hospital",
         nav_contact:"Contact",
+        dl1:"Exams"
         },
     };
         function setlang(lang) {
@@ -127,5 +206,16 @@
         document.getElementById('nav_enam').textContent=translations[lang].nav_enam;
         document.getElementById('nav_hospitalier').textContent=translations[lang].nav_hospitalier;
         document.getElementById('nav_contact').textContent=translations[lang].nav_contact;
+        document.getElementById('dl1').textContent=translations[lang].dl1;
         }
-    </script>
+        function toggleDropdown() {
+            let menu = document.getElementById('dropdownMenu');
+            menu.classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.getElementById('dropdownMenu').classList.remove('open');
+            }
+        });
+            
+            </script>
