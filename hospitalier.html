@@ -88,6 +88,41 @@
              .lang-btn:hover {
                 background-color: grey;
              }
+             
+              .logout-button {
+                background:transparent ;
+                color: #ff4444;
+                font-weight: bold;
+                font-family: arial,sans-serif;
+                padding: 8px 18px;
+                border-radius: 30px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                font-size: 13px;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 1000;
+                border: 2px solid #ff4444;
+
+              }
+              .logout-button:hover {
+                background-color: #ff4444;
+                color: white;
+              }
+             @media (max-width:480px) {
+                h1 {
+                    font-size: 20px;
+                }
+                nav a {
+                    width: 95%;
+                }
+            
+            .logout-button {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            }
         @media (max-width: 1024px){
             .card {
                 width: 75%;
@@ -124,14 +159,6 @@
                 gap:8px;
             }
         }
-        @media (max-width:480px){
-            h1 {
-                font-size: 20px;
-            }
-            nav a {
-                width: 90px;
-            }
-        }
     </style></head>
     <body>
         <h1 id="title">Concours d'hospitalier</h1>
@@ -139,6 +166,7 @@
          <div id="lang-switcher">
             <button onclick="setlang('fr')" class="lang-btn">FR</button>
             <button onclick="setlang('en')" class="lang-btn">EN</button>
+            <button class="logout-button" onclick="logout()">Se deconnecter</button>
       </div>
         <nav>
             <a href="index.html" id="nav_home">Accueil</a>
@@ -161,6 +189,13 @@
         </div>
     </body>
     <script>
+    let user = localStorage.getItem('user');
+        if (!user) {
+            window.location.href = 'login.html';
+        }
+       function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';}
       let   translations = {
        fr: {
         title: "Concours d'hospitalier",

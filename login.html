@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Add these 3 lines-->
+         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+         <meta http-equiv="Pragma" content="no-cache">
+         <meta http-equiv="Expires" content="0">
+         <title>login-Concours CM </title> 
+         <style>
+             body {
+                background-color: rgb(3,122,122);
+                font-family: arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+
+            }
+            .login-form  {
+                background: rgb(93,153,153);
+                border-radius: 10px;
+                padding: 30px;
+                margin:30px,auto;
+                height:80% ;
+                width: 25%;
+
+            }
+            h2 {
+                color: #f5a623;
+                text-align: center;
+                margin-bottom: 25px ;
+                font-size: 24px;
+            }
+            input {
+                width: 90%;
+                padding: 12px ;
+                margin-bottom: 15px;
+                border: 2px solid #2a3a4a;
+                border-radius: 8px;
+                background: white;
+                color: rgb(10, 10, 10);
+                font-size: 15px;
+                display: block;
+                margin: 10px auto;
+            }
+            input:focus {
+                outline: none;
+                color: rgb(6, 6, 6);
+            }
+            button {
+                 color:#f5a623;
+                padding: 12px 40px;
+                font-size: 16px;
+                cursor: pointer;
+                margin : 3px auto;
+                border-radius: 8px;
+                background: transparent;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                display: block;
+        
+            }
+            button:hover {
+                color: white;
+                background-color:   #f5a623;
+            }
+            .message{
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+                color: white;
+            }
+            .link {
+                color: #f5a623;
+                text-decoration: none;
+            } 
+            
+            #response {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+                color: #f5a623;
+            }
+                  @media (max-width: 768px){
+                .login-form {width:90%;}
+                h2 {
+                    font-size: 26px;
+                }
+                
+                }
+         </style>
+    </head>
+    <body>
+        <div class="login-form">
+            <h2>Se connecter</h2>
+            <input type="email" id="email" placeholder="Votre email">
+            <input type="password" id="password" placeholder="Votre mot de passe">
+             <button onclick="login()">Connexion</button>
+             <div id="response"></div>
+             <div class="message" >
+                pas un compte ? 
+                <a href="register.html" class="link">cree un compte</a>
+             </div>
+        </div>
+    </body>
+</html>
+<script>
+    async function login() {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        const response = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json'},
+            body: JSON.stringify({email, password})
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('response').textContent = data.error;
+        }
+        
+    }
+</script>

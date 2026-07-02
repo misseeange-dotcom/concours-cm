@@ -85,6 +85,34 @@
              .lang-btn:hover {
                 background-color: grey;
              }
+             
+              .logout-button {
+                background:transparent ;
+                color: #ff4444;
+                font-weight: bold;
+                font-family: arial,sans-serif;
+                padding: 8px 18px;
+                border-radius: 30px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                font-size: 13px;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 1000;
+                border: 2px solid #ff4444;
+
+              }
+              .logout-button:hover {
+                background-color: #ff4444;
+                color: white;
+              }
+             @media (max-width:480px) {
+            .logout-button {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            }
             @media (max-width: 768px){
                 .card-form {width:90%;}
                 h1 {
@@ -118,6 +146,7 @@
          <div id="lang-switcher">
             <button onclick="setlang('fr')" class="lang-btn">FR</button>
             <button onclick="setlang('en')" class="lang-btn">EN</button>
+            <button onclick="logout()" class="logout-button"> Se deconnecter</button>
       </div>
         <nav>
             <a href="index.html" id="nav_home">Accueil</a>
@@ -130,22 +159,40 @@
             <h2 id="papers"> Envoyer un message</h2>
             <input type="text" id="ph_name" placeholder="Votre nom ">
             <input type="email" id="ph_email" placeholder="Votre email">
-            <input type="text" id="ph_subject" placeholder="Sujet">
             <textarea  id="ph_message" placeholder="Votre message..."></textarea>
             <button class="submit-btn" id="dl1" onclick="sendMessage()" >Envoyer</button>
         </div>
         <script>
-          function sendMessage() {
+            let user = localStorage.getItem('user');
+        if (!user) {
+            window.location.href = 'login.html';
+        }
+ function logout() {
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';}
+    async   function sendMessage() {
             let name = document.getElementById('ph_name').value;
             let email = document.getElementById('ph_email').value; 
             let message = document.getElementById('ph_message').value; 
-            if (name ==='' || email ==='' || message ==='' ){
+            if (!name ==='' || !email ==='' || !message ==='' ){
                 alert('Veillez remplir tous les champs!');
-             } else {
-                    alert('Message envoye ! Merci ' + name );
-                }
+                return;
             }
-            
+
+            const response = await fetch('http://localhost:3000/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({ name, email, message})
+            });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert('Message envoye !' + name);
+                }else {
+                    alert('erreur : ' + data.error);
+            }
+        }
             
             
       let   translations = {
@@ -160,7 +207,6 @@
         nav_contact:"Contact", 
         ph_name:"Votre nom",
         ph_email:"email",
-        ph_subject:"sujet",
         ph_message:"Votre message...",
         dl1:"Envoyer",
     },
@@ -176,7 +222,6 @@
         nav_contact:"Contact",
         ph_name:"Your name",
         ph_email:"Your email",
-        ph_subject:"Subject",
         ph_message:"Your message",
         dl1:"Send",
         },
@@ -192,7 +237,6 @@
         document.getElementById('papers').textContent=translations[lang].papers;
         document.getElementById('ph_name').placeholder=translations[lang].ph_name;
         document.getElementById('ph_email').placeholder=translations[lang].ph_email;
-        document.getElementById('ph_subject').placeholder=translations[lang].ph_subject;
         document.getElementById('ph_message').placeholder=translations[lang].ph_message;
         document.getElementById('dl1').textContent=translations[lang].dl1;
         }

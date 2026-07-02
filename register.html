@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+     <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Add these 3 lines-->
+         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+         <meta http-equiv="Pragma" content="no-cache">
+         <meta http-equiv="Expires" content="0">
+         <title>Inscription - Concours CM</title>
+         <style>
+            body {
+                background-color: rgb(3,122,122);
+                font-family: arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+
+            }
+            .register-form  {
+                background: rgb(93,153,153);
+                border-radius: 10px;
+                padding: 30px;
+                margin:30px,auto;
+                width: 25%;
+            }
+            h2 {
+                color: #f5a623;
+                text-align: center;
+                margin-bottom: 25px ;
+                font-size: 24px;
+            }
+            input {
+                width: 90%;
+                padding: 12px ;
+                margin-bottom: 15px;
+                border: 2px solid #2a3a4a;
+                border-radius: 8px;
+                background: white;
+                color: rgb(9, 9, 9);
+                font-size: 15px;
+                display: block;
+                margin: 10px auto;
+
+            }
+            input:focus {
+                outline: none;
+                color: #050505;
+            }
+            button {
+                 color:#f5a623;
+                padding: 12px 40px;
+                font-size: 16px;
+                cursor: pointer;
+                margin : 3px auto;
+                border-radius: 8px;
+                background: transparent;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                display: block;
+        
+            }
+            button:hover {
+                color: white;
+                background-color:   #f5a623;
+            }
+            .message{
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+                color: white;
+            }
+            .link {
+                color: #f5a623;
+                text-decoration: none;
+            } 
+            #response {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 14px;
+                color: #f5a623;
+            }
+             @media (max-width: 768px){
+                .register-form {width:90%;}
+                h2 {
+                    font-size: 26px;
+                }
+                
+                }
+         </style>
+    </head>
+    <body>
+        <div class="register-form">
+          <h2>cree votre compte</h2>
+
+          <input type="text" id="name" placeholder="Votre nom">
+          <input type="email" id="email" placeholder="Votre email">
+          <input type="password" id="password" placeholder="mot de passe ">
+
+          <button onclick="register()">S'inscrire</button>
+
+          <div id="response"></div>
+          <div class="message">
+            deja un compte ? 
+            <a href="login.html" class="link">Se connecter</a>
+          </div>
+        </div>
+    </body>
+</html>
+<script>
+    async function register() {
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+     if (!name || !email || !password ){
+        document.getElementById('response').textcontent = 'Remplissez tous les champs !';
+        return;
+     }
+
+     const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({ name, email, password})
+     });
+     const data = await response.json();
+        document.getElementById('response').textContent = data.message || data.error;
+
+
+    }
+</script>

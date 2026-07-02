@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "virginie",
+    "email": "virginie@gmail.com",
+    "password": "zxcv",
+    "premium": false
+  },
+  {
+    "id": 2,
+    "name": "torres",
+    "email": "torres@gmail.com",
+    "password": "toto",
+    "premium": false
+  }
+]
