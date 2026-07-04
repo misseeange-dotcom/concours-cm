@@ -119,7 +119,7 @@
         return;
      }
 
-     const response = await fetch('http://concours-cm-api.onrender.com/register', {
+     const response = await fetch('https://concours-cm-api.onrender.com/register', {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify({ name, email, password})
