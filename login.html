@@ -111,7 +111,7 @@
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
 
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http:// concours-cm-api.onrender.com/login', {
             method: 'POST',
             headers: { 'Content-type': 'application/json'},
             body: JSON.stringify({email, password})
