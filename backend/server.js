@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -58,11 +59,12 @@ app.post('/register', (req, res) => {
     if (existing) {
        return res.json({ success: false, error: 'Email deja utilise '});
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
     users.push({
         id: users.length + 1,
         name,
         email,
-        password,
+        password: hashedPassword,
         premium: false
     });
     saveUsers(users);
@@ -76,7 +78,10 @@ app.post('/login', (req, res) => {
        return res.json({ success: false, error: 'Champs manquants'});
     }
     let users = loadUsers();
-    let user = users.find(u => u.email === email && u.password === password);
+    let user = users.find(u => u.email === email);
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+        return res.json({ success: false, error: 'Email ou mot de passe incorrecte !'})
+    }
 
     if(!user) {
        return res.json({ success: false, error: 'Email ou mot de passe incorrecte !'});
