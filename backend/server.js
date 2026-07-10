@@ -49,7 +49,7 @@ app.post('/contact', (req, res) => {
 
     res.json({ success: true, message: 'Message recu !'});
 });
-app.post('/register', (req, res) => {
+app.post('/register', async(req, res) => {
     const{ name, email, password} = req.body;
     if(!name || !email || !password) {
        return res.json({ success: false, error: 'Champs manquants'});
@@ -72,7 +72,7 @@ app.post('/register', (req, res) => {
     res.json({ success: true, message: 'compte cree !'});
 
 });
-app.post('/login', (req, res) => {
+app.post('/login', async(req, res) => {
     const{email, password} = req.body;
     if (!email || !password) {
        return res.json({ success: false, error: 'Champs manquants'});
@@ -82,11 +82,6 @@ app.post('/login', (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.json({ success: false, error: 'Email ou mot de passe incorrecte !'})
     }
-
-    if(!user) {
-       return res.json({ success: false, error: 'Email ou mot de passe incorrecte !'});
-    }
-
     console.log( 'Connexion :' + user.name);
     res.json({
         success: true,
